@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     updatedAt: 'updated_at'
   });
   products.associate = function(models) {
-    products.belongsTo(models.order_items, { foreignKey: "product_id" });
+    products.belongsTo(models.order_items, { foreignKey: "id" });
   };
   return products;
 };

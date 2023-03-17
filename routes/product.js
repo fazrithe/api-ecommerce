@@ -9,4 +9,5 @@ router.get('/', VerifyToken, ProductGetAll);
 router.put('/update/:id', VerifyToken, ProductUpdate);
 router.delete('/delete/:id', VerifyToken, ProductDelete);
 
+
 export default router;

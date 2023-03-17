@@ -63,8 +63,7 @@ export const MerchantUpdate = async (req, res) => {
         if(merchant) {
             res.status(200).json({
                 'status': 'success',
-                'message': 'Merchant successfully modified',
-                'data': merchant
+                'message': 'Merchant successfully modified'
             })
         }
     } catch(err) {

@@ -1,6 +1,8 @@
 import bcrypt from "bcrypt";
 const models = require('../models/index');
 import jwt from "jsonwebtoken";
+import logactivity from "../mongo/logactivity";
+import requestIp from "request-ip";
 
 export const Register = async(req, res) => {
     const { fullname, email, password, confPassword } = req.body;
@@ -58,6 +60,15 @@ export const Login = async(req, res) => {
                 id: userId
             }
         });
+
+        const clientIp = requestIp.getClientIp(req)
+        const data = {
+            'user_id' : userId,
+            'ip' : clientIp,
+            'url': req.url
+        };
+        const dataLog = new logactivity(data);
+        await dataLog.save();
         res.cookie('refreshToken', refreshToken,{
             httpOnly: true,
             maxAge: 24 * 60 * 60 * 1000

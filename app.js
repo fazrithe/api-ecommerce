@@ -12,7 +12,16 @@ import productRouter from './routes/product'
 import customerRouter from './routes/customer'
 import orderRouter from './routes/order'
 import transactionRoute from './routes/transaction'
+import mongoose from "mongoose";
 
+mongoose.connect("mongodb://localhost:27017/e-commerce",{ 
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
+const db = mongoose.connection;
+db.on('error', (error)=> console.error(error));
+db.once('open', () => console.log('Database Connected'));
+ 
 dotenv.config({ path: './.env' });
 var app = express();
 

@@ -13,6 +13,7 @@ import customerRouter from './routes/customer'
 import orderRouter from './routes/order'
 import transactionRoute from './routes/transaction'
 import mongoose from "mongoose";
+import cors from "cors";
 
 mongoose.connect("mongodb://localhost:27017/e-commerce",{ 
     useNewUrlParser: true,
@@ -31,6 +32,7 @@ process.env.REFRESH_TOKEN_SECRET;
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+app.use(cors({ credentials:true, origin:'http://localhost:5000' }));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
